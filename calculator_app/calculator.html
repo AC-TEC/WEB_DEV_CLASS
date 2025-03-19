@@ -2,49 +2,12 @@
 <html>
   <head>
     <title>Calculator</title>
-    <style>
-      .button {
-        width: 80px;
-        height: 40px;
-        background-color: #6969b3;
-        border: 0px;
-        color: #ffffffca;
-        border-radius: 6px;
-        box-shadow: 3px 5px 5px black;
-      }
-
-      button:hover {
-        background-color: #98c1d9;
-      }
-
-      button:active {
-        box-shadow: 2px 4px 4px black;
-      }
-
-      .flexContainer {
-        display: flex;
-        flex-direction: row;
-        flex-wrap: wrap;
-        justify-content: space-evenly;
-        align-items: baseline;
-        width: 390px;
-        row-gap: 8px;
-      }
-
-      .displayContainer {
-        display: flex;
-        justify-content: flex-end;
-        width: 390px;
-      }
-
-      #display {
-        margin-right: 20px;
-      }
-    </style>
+    <link rel="stylesheet" href="calculator.css" >
   </head>
 
   <body>
     <h1>Calculator</h1>
+
     <div class="displayContainer">
       <span id="display"></span>
     </div>
@@ -74,82 +37,8 @@
       <button class="button parenthesis">)</button>
     </div>
 
-    <script>
-      const numbersArr = Array.from(document.getElementsByClassName("number"));
-      const operatorsArr = Array.from(document.getElementsByClassName("operator"));
-      const parenthesisArr = Array.from(document.getElementsByClassName("parenthesis"));
-      const numberStrs = "0123456789".split("");
+    
+    <script src="calculator.js"></script>
 
-      const data = {
-        displayString: "0",
-        appendStringNum: (newChar) => {
-          if (newChar === ".") {
-            //decimal + 0?
-          }
-
-          if (numberStrs.includes(newChar)) {
-            if (data.displayString === "0") {
-              data.displayString = "";
-            }
-            data.displayString += newChar;
-          }
-          data.updateDisplay();
-        },
-
-        appendStringOperator: (newChar) => {
-          if (numberStrs.includes(data.displayString.slice(-1)) || data.displayString.slice(-1) === ")") {
-            data.displayString += newChar;
-          }
-          data.updateDisplay();
-        },
-
-        appendStringParenthesis: (newChar) => {
-          if (newChar === ")") {
-            if (data.displayString.split("(").length <= data.displayString.split(")").length) {
-              //if there are not enough open parenthesis to add a closing parenthesis terminate early
-              return;
-            }
-            if (operatorsArr.map((operator) => operator.innerText).includes(data.displayString[data.displayString.length - 1])) {
-              //early termination for adding parenthesis after operator
-              return;
-            }
-          }
-          if (data.displayString === "0") {
-            data.displayString = "";
-            data.displayString += newChar;
-            return;
-          }
-
-          data.displayString += newChar;
-
-          data.updateDisplay();
-        },
-        updateDisplay: () => {
-          const display = document.getElementById("display");
-          display.innerText = data.displayString;
-        },
-      };
-
-      const display = document.getElementById("display");
-      display.innerText = data.displayString;
-
-      numbersArr.map((elem, i) => {
-        elem.addEventListener("click", (evt) => {
-          data.appendStringNum(elem.innerText);
-        });
-      });
-
-      operatorsArr.map((elem, i) => {
-        elem.addEventListener("click", (evt) => {
-          data.appendStringOperator(elem.innerText);
-        });
-      });
-
-      parenthesisArr.map((elem, i) => {
-        elem.addEventListener("click", (evt) => {
-          data.appendStringParenthesis(elem.innerText);
-        });
-      });
-    </script>
   </body>
 </html>
