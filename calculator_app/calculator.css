@@ -3,10 +3,14 @@ body{
     color: white;
 }
 
-h1{
-    padding-left: 75px;
+/* History button */
+.topContainer{
+    display: grid;
+    grid-template-columns: repeat(4, 80px); /* Ensures even spacing */
+    gap: 8px;
+    width: 360px; /* Adjust width to fit buttons properly */
+    justify-content: center;
 }
-
 
 .button {
     width: 80px;

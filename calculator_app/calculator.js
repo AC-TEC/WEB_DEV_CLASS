@@ -1,11 +1,15 @@
 //----------- SELECT BUTTONS ------------------
 
 
-const numberButtons = document.querySelectorAll(".number");     //! changed .number_button to .number class
+const numberButtons = document.querySelectorAll(".number");     
 const operatorButtons = document.querySelectorAll(".operator")
 const equalsButton = document.querySelector(".equals")
+
+//clear button (extra)
 const clearButton = document.querySelector(".clear")
 
+//history button (extra)
+const historyButton = document.querySelector(".history")
 
 
 //----------- DISPLAY --------------------------
@@ -38,6 +42,21 @@ function clearDisplay(){
     updateView("display");
 }
 
+
+//creates an empty array to store past calculations
+const history = [];
+
+//displays calculator history
+function viewHistory(){
+    if (history.length === 0) {
+        alert("History is empty.");
+    } else {
+        alert("History:\n" + history.join("\n"));
+    }
+}
+
+
+
 //-------- EVENT LISTENERS FOR BUTTONS ----------
 
 
@@ -64,6 +83,9 @@ equalsButton.addEventListener("click",  () => calcExpression())
 //Event listener for AC (clear) button
 clearButton.addEventListener("click",  () => clearDisplay())
 
+
+//Event listener for History button
+historyButton.addEventListener("click",  viewHistory);
 
 
 //----------- CREATING EXPRESSION TREE ------------------
@@ -274,6 +296,9 @@ function calcExpression(){
 
         //evaluate tree
         let finalAnswer = evalTree(expTree);
+
+        // Store the history (expression and result)
+        history.push(`${data.runningSum} = ${finalAnswer}`);
 
         //store answer and display
         data.runningSum = finalAnswer.toString();
