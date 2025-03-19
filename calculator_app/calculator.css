@@ -1,0 +1,51 @@
+
+
+h1{
+    padding-left: 100px;
+}
+
+
+.button {
+    width: 80px;
+    height: 40px;
+    background-color: #6969b3;
+    border: 0px;
+    color: #ffffffca;
+    border-radius: 6px;
+    box-shadow: 3px 5px 5px black;
+}
+
+button:hover {
+    background-color: #98c1d9;
+}
+
+button:active {
+    box-shadow: 2px 4px 4px black;
+}
+
+.flexContainer {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: baseline;
+    width: 390px;
+    row-gap: 8px;
+}
+
+.displayContainer {
+    display: flex;
+    justify-content: flex-end;
+    width: 390px;
+    margin-bottom: 15px; /* Adds space below the display */
+}
+
+#display {
+    margin-right: 20px;
+    font-size: 24px;
+    min-height: 40px;
+    width: 88%;
+    text-align: right;
+    border: 1px solid #6969b3;
+    padding: 5px;
+}
